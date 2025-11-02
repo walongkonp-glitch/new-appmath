@@ -1,0 +1,735 @@
+/* ====================================
+   การตั้งค่าสีและตัวแปรหลัก
+   ==================================== */
+:root {
+    --primary-color-1: #D6D5CF;
+    --primary-color-2: #B2C51E;
+    --secondary-color: #74787B;
+    --highlight-orange: #FFA500;
+    --background-white: #FFFFFF;
+    --dark-gray: #4A4A4A;
+    --light-gray: #F5F7FA;
+    --gold-accent: #FFD700;
+    --formal-green: #004d40;
+    --gradient-1: #00695c;
+    --gradient-2: #004d40;
+    --gradient-3: #B2C51E;
+    --gradient-4: #c6e021;
+}
+
+/* ====================================
+   Reset พื้นฐาน
+   ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Prompt', sans-serif;
+    color: var(--dark-gray);
+    line-height: 1.6;
+    overflow-x: visible;
+    overflow-y: auto;
+    background-color: white;
+}
+
+/* ====================================
+   Header (พื้นหลังภาพ + Glassmorphism)
+   ==================================== */
+header {
+    position: relative;
+    background: url('ภาพปก2.png') center/cover no-repeat;
+    color: var(--secondary-color);
+    padding: 90px 30px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+header img {
+    max-width: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    margin-left: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ====================================
+   Navigation (Sticky + Glass + Hover Line)
+   ==================================== */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, rgba(0, 77, 64, 0.9), rgba(0, 105, 92, 0.85));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 15px;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color-2);
+    transition: width 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        position: static;
+    }
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+/* ====================================
+   Video Section
+   ==================================== */
+.video-section {
+    text-align: center;
+    margin: 30px 0;
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.video-container iframe {
+    width: 90%;
+    max-width: 700px;
+    height: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.video-container iframe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ====================================
+   News & Jobs Section
+   ==================================== */
+.news,
+#jobs-section {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 40px auto 0;
+    background: var(--light-gray);
+    border-radius: 20px;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.news { animation-delay: 0.4s; }
+#jobs-section { animation-delay: 0.6s; }
+
+.news h2,
+#jobs-section h2 {
+    text-align: center;
+    color: var(--formal-green);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.job-listings-container,
+.news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.job-posting {
+    background: #fff;
+    border-left: 6px solid var(--primary-color-2);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.job-posting:hover {
+    transform: translateY(-5px) rotateY(5deg) rotateX(2deg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+.job-posting h4 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+.job-posting img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.youtube-link img {
+    width: 50%;
+    max-width: 200px;
+    border-radius: 70px;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.youtube-link img:hover {
+    transform: scale(1.05);
+}
+
+.fb-page {
+    display: flex;
+    justify-content: center;
+    width: 100% !important;
+}
+
+/* ====================================
+   Section ทั่วไป (ข้อมูล + เอกสาร)
+   ==================================== */
+.section {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    background: var(--background-white);
+    border-radius: 20px;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.section h3 {
+    color: var(--secondary-color);
+    font-size: 1.8em;
+    margin: 20px 0 10px;
+}
+
+.section p,
+.section ul {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.section ul {
+    padding-left: 30px;
+}
+
+.section ul li {
+    margin-bottom: 10px;
+}
+
+/* ปุ่มเอกสาร */
+.document-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.button {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    padding: 12px 30px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: var(--dark-gray);
+    background: transparent;
+    border: 2px solid var(--dark-gray);
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--primary-color-2);
+    transition: width 0.4s ease;
+    z-index: -1;
+}
+
+.button:hover {
+    color: var(--dark-gray);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover::before {
+    width: 100%;
+}
+
+.job-posting .button {
+    display: inline-block;
+    width: auto;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* ====================================
+   Contact Section (Animated Gradient)
+   ==================================== */
+.contact-container {
+    min-height: 70vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+.contact-box {
+    position: relative;
+    max-width: 700px;
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.contact-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--primary-color-2);
+}
+
+.contact-box h2 {
+    font-size: 2.5em;
+    color: var(--gold-accent);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.contact-details {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.contact-details a.phone-number {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color-2);
+    font-weight: 600;
+    font-size: 1.3em;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-details a.phone-number:hover {
+    background: var(--primary-color-2);
+    color: var(--dark-gray);
+    transform: scale(1.05);
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background: var(--primary-color-1);
+    color: var(--background-white);
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background: var(--primary-color-2);
+    transform: translateY(-3px);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    background: var(--primary-color-2);
+    transform: scale(1.1);
+}
+
+/* ====================================
+   Footer
+   ==================================== */
+footer.site-footer {
+    margin-top: 40px;
+    padding: 40px 20px 0;
+    background: linear-gradient(135deg, #f5f7fa, #e8edf1);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+    font-size: 0.9em;
+    color: #555;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.footer-col h4 {
+    color: var(--formal-green);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-col ul li a {
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-color-2);
+    text-decoration: underline;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.footer-social a.fb { background: #3b5998; }
+.footer-social a.tw { background: #1da1f2; }
+.footer-social a.yt { background: #ff0000; }
+.footer-social a:hover { opacity: 0.8; }
+
+.footer-bottom {
+    border-top: 1px solid #dce1e6;
+    text-align: center;
+    padding: 20px 0;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-social { justify-content: center; }
+}
+
+/* ====================================
+   Details / Summary (Accordion)
+   ==================================== */
+details {
+    margin-bottom: 10px;
+    background: var(--background-white);
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+details summary {
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: white;
+    background: linear-gradient(135deg, var(--gradient-3), var(--gradient-4));
+    cursor: pointer;
+    list-style: none;
+    transition: all 0.3s ease;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+details[open] summary,
+details summary:hover {
+    background: linear-gradient(135deg, var(--highlight-orange), #ffc107);
+    color: var(--dark-gray);
+    transform: scale(1.02);
+}
+
+details p {
+    padding: 15px;
+    font-size: 1.1em;
+    background: var(--background-white);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+details[open] p {
+    opacity: 1;
+}
+
+/* Details Container (สีตามลำดับ) */
+.details-container > details:nth-of-type(1) summary,
+.details-container > details:nth-of-type(2) summary,
+.details-container > details:nth-of-type(3) summary {
+    background-color: #A9D18E;
+}
+
+.details-container > details:nth-of-type(1) summary:hover,
+.details-container > details:nth-of-type(2) summary:hover,
+.details-container > details:nth-of-type(3) summary:hover {
+    background-color: #9dce80;
+}
+
+.details-container > details:nth-of-type(4) summary {
+    background-color: #FDCB7C;
+}
+
+.details-container > details:nth-of-type(4) summary:hover {
+    background-color: #fcc261;
+}
+
+details > :not(summary) {
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, padding 0.3s ease-out;
+}
+
+details[open] > :not(summary) {
+    padding: 10px 20px;
+    opacity: 1;
+}
+
+/* ====================================
+   Personnel (บุคลากร)
+   ==================================== */
+.personnel-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.personnel-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.personnel-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color-2);
+    border-radius: 4px;
+}
+
+.personnel-container::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+.person {
+    width: 100%;
+    max-width: 280px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.person:hover {
+    transform: translateY(-5px) rotateY(10deg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+.person img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: 50% 0;
+    border-radius: 6px;
+}
+
+.name, .position, .email {
+    font-size: 0.83em;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.position { color: #555; }
+.email { color: #777; word-break: break-all; }
+
+@media (max-width: 768px) {
+    .personnel-container {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+    }
+    .person {
+        width: 90%;
+        max-width: 260px;
+    }
+}
+
+/* ====================================
+   Image Slider (Swiper)
+   ==================================== */
+.swiper-container-section {
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.mySwiper {
+    width: 90%;
+    height: 450px;
+    border-radius: 10px;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ====================================
+   Map Section
+   ==================================== */
+#map-section {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: -40px auto 40px;
+    background: var(--background-white);
+    border-radius: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+#map-section h2 {
+    text-align: center;
+    color: var(--formal-green);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.map-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.map-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    display: block;
+}
+
+/* ====================================
+   Animation โหลดหน้า
+   ==================================== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
